@@ -1,0 +1,33 @@
+[project]
+name = "teamwork-project"
+version = "0.1.0"
+# 要求團隊組員至少需要 Python 3.10 以上（建議 3.11 或 3.12）
+requires-python = ">=3.10"
+
+[tool.ruff]
+line-length = 88
+# 讓 Ruff 依據 3.12 語法特性做最佳檢查（如允許新的 f-string 寫法）
+target-version = "py312"
+
+[tool.ruff.lint]
+# E: pycodestyle errors
+# W: pycodestyle warnings
+# F: Pyflakes (未定義變數、未使用的 import 等)
+# I: isort (自動排序 import，團隊協作必備)
+# N: pep8-naming (命名風格檢查)
+select = ["E", "W", "F", "I", "N"]
+
+# 視團隊需求忽略過於嚴格的規則（目前可先留空或註解）
+ignore = [
+    # "N806",  # 允許函式內部使用大寫變數名稱
+]
+
+[tool.ruff.lint.isort]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.16.10",
+]
+# 讓 isort 能正確將你專案的模組識別為本地套件
+# known-first-party = ["package"]  # 範例而已
