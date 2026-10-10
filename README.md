@@ -37,7 +37,7 @@ Group 13: 蘇郁文、李旻頵、張冠鋐、蕭狀元、王界誠、朱紹來
     也可以手動在VSCode的GUI介面安裝
 
 2. **Scoop（可選項）**  
-    一款簡潔的CLI軟體管理器，主要特色為不污染環境變數，也是我推薦的原因，以下是安裝指令：
+    一款簡潔的CLI軟體管理器，主要特色為不污染環境變數，也是我推薦的原因，以下是安裝指令：  
     `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force; irm get.scoop.it | iex`  
     後續操作皆預設在有安裝Scoop的情況下  
 
