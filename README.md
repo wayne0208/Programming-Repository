@@ -41,7 +41,7 @@ Group 13: 蘇郁文、李旻頵、張冠鋐、蕭狀元、王界誠、朱紹來
     `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force; irm get.scoop.it | iex`  
     後續操作皆預設在有安裝Scoop的情況下  
 
-3. **Git**
+3. **Git**  
     使用Scoop安裝，若已經安裝過Git可以跳過此行命令：  
     `scoop install git`  
     若沒安裝Scoop，用以下指令代替：  
@@ -59,7 +59,7 @@ Group 13: 蘇郁文、李旻頵、張冠鋐、蕭狀元、王界誠、朱紹來
     Git的操作部分後續會提到
 
 4. **Python**  
-    uv是一款高效的Python的套件管理工具，使用uv來保證每人開發環境的一致  
+    uv是一款高效的Python套件管理工具，使用uv來保證每人開發環境的一致  
     先使用Scoop安裝uv，使用以下指令：  
     `scoop install uv`  
     若沒安裝Scoop，用以下指令代替：  
@@ -104,7 +104,7 @@ Group 13: 蘇郁文、李旻頵、張冠鋐、蕭狀元、王界誠、朱紹來
         `git push -u origin feature/分支名`
 
     報錯可能是遇到conflict，手動解決後再執行下一步操作  
-    以上操作均可以在VSCode的GUI介面進行
+    以上Git的操作均可以在VSCode的GUI介面進行
 
 ### 專案架構
 
