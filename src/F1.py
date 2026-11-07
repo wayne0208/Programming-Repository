@@ -137,7 +137,7 @@ def search_student_date():#查詢學生資料
                         pcode = id_course(code)
                     else:
                         pcode = ""
-                    chinese_char = sum(1 for char in pcode if  '\u4e00' <= char <= '\u9fff')
+                    chinese_char = sum(1 for char in pcode if '\u4e00' <= char <= '\u9fff')
                     char_ = 13 - chinese_char
                     row += f"{pcode:<{char_}}"
                 print(row)
@@ -148,7 +148,7 @@ def search_student_date():#查詢學生資料
 def id_course(code):
     for i in range(len(model.course)):
         if code == model.course[i][0]:
-            pcode=model.course[i][1]
+            pcode = model.course[i][1]
     return pcode
 #add_course()#測試
 #delete_course()
