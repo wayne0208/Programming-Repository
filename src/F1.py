@@ -18,18 +18,19 @@ def add_course():#新增新的課程
 
 def add_student(): #新增學生
     new_student = []
-    new_student_course = [[None] * 12 for _ in range(7)] #學生已選課程
+    #new_student_course = [[0] * 12 for _ in range(7)] #學生已選課程
     new_student.append(int(input("學號:")))
     new_student.append(input("姓名:"))
     new_student.append(input("系級:"))
     new_student.append(int(input("學分上限:")))
-
+    new_student.append(input('已選課程(課程代碼, 用空格分開):').split())
+    '''
     for week in range(7):
         week_chinese = ["一", "二", "三", "四", "五", "六", "日"] #數字轉中文
         print(f"星期{week_chinese[week]}:")
         while True:
             course, period = input("已選課程(課程代碼 第幾節), 結束(N/n N/n):").split()
-            if course == period == 'N' or period == period == 'n':
+            if course == period == 'N' or course == period == 'n':
                 break
             else:
                 try:
@@ -48,7 +49,7 @@ def add_student(): #新增學生
                     new_student_course[week][period - 1] = course
 
     new_student.append(new_student_course)
-
+    '''
     check_new_student_id(new_student[0], new_student) #檢查學號是否重複
 
 def check_new_course(new_course,t):#檢查是否衝堂
@@ -87,11 +88,15 @@ def check_new_course(new_course,t):#檢查是否衝堂
         model.course.append(new_course)#新增課程
 
 def check_new_student_id(student_id, new_student): #檢查學號是否重複
+    student_id_repeat = False
     for i in range(len(model.students)):
         if student_id == model.students[i][0]:
-            print('報錯拒絕,提示:學號重複')
-        else:
-            model.students.append(new_student) #新增學生
+            student_id_repeat = True
+            break
+    if student_id_repeat:
+        print('報錯拒絕,提示:學號重複')
+    else:
+        model.students.append(new_student) #新增學生
 
 def delete_course():#刪除課程
     code = input("請輸入要刪除的課程代碼:")
@@ -152,4 +157,4 @@ def id_course(code):
     return pcode
 #add_course()#測試
 #delete_course()
-search_student_date()
+#search_student_date()
