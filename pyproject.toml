@@ -5,7 +5,7 @@ version = "0.1.0"
 requires-python = ">=3.10"
 
 [tool.ruff]
-line-length = 88
+line-length = 120
 # 讓 Ruff 依據 3.12 語法特性做最佳檢查（如允許新的 f-string 寫法）
 target-version = "py312"
 

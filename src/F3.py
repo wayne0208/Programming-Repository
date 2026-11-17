@@ -101,7 +101,7 @@ def main():
         print("學號格式錯誤")
         return
     student = find_student(int(student_id))
-    if student == None:
+    if student is None:
         print("找不到這名學生")
         return
     while True:
