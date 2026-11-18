@@ -4,10 +4,32 @@ version = "0.1.0"
 # 要求團隊組員至少需要 Python 3.10 以上（建議 3.11 或 3.12）
 requires-python = ">=3.10"
 
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+only-include = ["src"]
+sources = ["src"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/**",
+    "tests/**",
+    "pyproject.toml",
+    "README.md",
+    ".python-version",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
 [tool.ruff]
 line-length = 120
 # 讓 Ruff 依據 3.12 語法特性做最佳檢查（如允許新的 f-string 寫法）
 target-version = "py312"
+src = ["src", "tests"]
 
 [tool.ruff.lint]
 # E: pycodestyle errors
@@ -17,8 +39,9 @@ target-version = "py312"
 # N: pep8-naming (命名風格檢查)
 select = ["E", "W", "F", "I", "N"]
 
-# 視團隊需求忽略過於嚴格的規則（目前可先留空或註解）
+# 視團隊需求忽略過於嚴格的規則
 ignore = [
+    "N999",  # 允許模組檔名使用大寫（如 F1.py、F2.py、F3.py）
     # "N806",  # 允許函式內部使用大寫變數名稱
 ]
 
@@ -29,5 +52,3 @@ dev = [
     "pytest>=9.1.1",
     "ruff>=0.16.10",
 ]
-# 讓 isort 能正確將你專案的模組識別為本地套件
-# known-first-party = ["package"]  # 範例而已
