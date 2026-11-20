@@ -37,7 +37,8 @@ src = ["src", "tests"]
 # F: Pyflakes (未定義變數、未使用的 import 等)
 # I: isort (自動排序 import，團隊協作必備)
 # N: pep8-naming (命名風格檢查)
-select = ["E", "W", "F", "I", "N"]
+# B: flake8-bugbear (常見邏輯陷阱與不當例外處理檢查)
+select = ["E", "W", "F", "I", "N", "B"]
 
 # 視團隊需求忽略過於嚴格的規則
 ignore = [
