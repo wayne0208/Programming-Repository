@@ -118,7 +118,7 @@ def search_student_date():#查詢學生資料
             ii = 1
             print(f"學生學號:{model.students[i][0]}\n學生名字:{model.students[i][1]}\n科系:{model.students[i][2]}\n學分上限:{model.students[i][3]}")
             a = model.students[i][4]#取名字
-            user_a = getattr(model,a)#可以直接取得model.curriculum
+            user_a =a
             print("----個人課表----")
             print(f"{'節數':<5}{'一':<13}{'二':<13}{'三':<13}{'四':<13}{'五':<13}{'六':<13}{'日':<13}")
             for i in range(12):
