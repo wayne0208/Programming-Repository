@@ -9,6 +9,60 @@ Group 13: 蘇郁文、李旻頵、張冠鋐、蕭狀元、王界誠、朱紹來
 
 ---
 
+## 自動化 CI 與開發規範
+
+簡單講只需要每次Push/PR後看一次報告就知道過沒過，沒過基本上就是不符合作業規範或有錯誤
+然後作業規範有以下要求，寫之前可以確認一下：
+
+- 採用 TDD 開發（F7開始）
+- 不能用全域變數
+- 不能使用`input()`
+- 錯誤捕捉
+
+### 1. Push / PR 工作流順序
+
+任何分支 `push` 或發起 `pull_request` 皆會自動觸發 `.github/workflows/ci.yml`，所有檢查關卡皆為**硬性門檻**（任一失敗即不通過，但仍會跑完所有步驟產出完整報告），依序執行以下，看產出的報告寫什麼就好：
+
+1. **安裝環境**：`uv sync --all-groups`
+2. **靜態分析與排版**：`ruff check .`（`E/W/F/I/N/B`）➔ `ruff format --check .`
+3. **編譯與打包**：`python -m compileall -q src tests` ➔ `uv build`
+4. **執行測試**：
+   - **提交者功能測試**：`pytest tests --ignore=tests/common`（由各功能負責人撰寫於 `tests/test_*.py`）
+   - **通用規範測試**：`pytest tests/common`
+5. **產生與發佈報告**：寫入 Job Summary、上傳 Artifact，並於 PR 自動留言更新。
+
+### 2. TDD 開發流程
+
+作業規範要求要求第 10 週起新增核心功能須採 TDD（`Requirement → Test → Red → Green → Refactor → Regression Test`）
+也就是要自己撰寫測試案例：
+
+1. **Requirement**：確認函式輸入、輸出、邊界與錯誤處理規格（見 `docs/SPEC.md`）。
+2. **Test / Red**：先在 `tests/test_<功能>.py` 撰寫測試，執行 `uv run pytest` 確認測試失敗（不可先寫完功能才補測試）。
+3. **Green**：在 `src/` 完成最低限度實作使測試通過（核心函式以參數傳遞資料、不呼叫 `input()`）。
+4. **Refactor**：重構並整理風格（`uv run ruff check .`、`uv run ruff format .`）。
+5. **Regression Test**：執行完整 `uv run pytest` 確認所有既有測試皆通過後再提交並留下 TDD 紀錄。
+
+### 3. 通用規範規則（`tests/common/test_spec_guardrails.py`）
+
+CI 會自動掃描 `src/**/*.py` 並檢查以下 5 項共通規範，都是作業規範要求的：
+
+- **禁止全域變數傳遞資料**：不可使用 `global`、模組頂層僅允許全大寫常數、核心函式不得直接存取跨模組全域資料（如 `model.course`、`getattr(model, ...)`）。
+- **核心函式不得依賴 `input()`**：僅允許 `main`、`cli_*`、`*_cli`、`menu*`、`cli.py`/`main.py` 或 `if __name__ == "__main__":` 處理人工輸入。
+- **模組安全匯入**：`import` 時不可執行 `input()` 阻塞或拋出未捕獲例外。
+- **禁止不當吞錯**：禁止裸 `except:` 與 `except ...: pass`。
+- **數值輸入保護**：`int(input(...))` / `float(input(...))` 須以 `try/except ValueError` 保護，避免輸入非數字直接崩潰。
+
+### 4. 測試報告怎麼看
+
+這個報告只保留30天，要放進繳交報告的話可以順手存進`.\docs\artifacts\`下
+
+- **Push & PR 總覽**：GitHub 頁籤 **Actions ➔ 點選當次執行 ➔ Summary** 查看各關卡狀態表與展開明細。
+- **PR 自動留言**：PR 頁面會自動張貼並更新同一則測試報告留言，方便 Code Review。
+- **報告封存下載**：於 Actions 執行頁下方 **Artifacts** 下載 `ci-test-report-*`（含 `ci-report.md`、JUnit XML 與 Ruff 日誌，保留 30 天），可供每週作業繳交附檔。
+- **狀態說明**：所有關卡若出現 `❌ 失敗（阻斷）` 皆須修正才能通過 CI；若測試出現 **`💥 非預期例外中斷`** 代表測資觸發未捕獲例外導致程式崩潰，應優先於 **`❌ 斷言失敗`** 處理。
+
+---
+
 ## 簡易教學
 
 ### 科學上網
@@ -21,7 +75,7 @@ Group 13: 蘇郁文、李旻頵、張冠鋐、蕭狀元、王界誠、朱紹來
 預設是在Windows環境，所有指令皆在PowerShell執行
 
 在特定位置使用的操作，可以在檔案總管開啟對應資料夾後，右鍵點選`在終端中開啟`  
-，或者複製位置後在終端中輸入`cd `(注意空格)，接者貼上複製下來的位置
+，或者複製位置後在終端中輸入`cd`，接者貼上複製下來的位置
 
 1. **VSCode**
 

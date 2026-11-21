@@ -1,0 +1,128 @@
+name: Python CI (Build, Static Analysis, Tests & Report)
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version-file: ".python-version"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        id: install
+        run: uv sync --all-groups
+
+      - name: Prepare report directory
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: mkdir -p build/ci-reports
+
+      - name: Run Ruff Lint Check
+        id: lint
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: uv run ruff check . 2>&1 | tee build/ci-reports/ruff-lint.txt
+
+      - name: Run Ruff Format Check
+        id: format
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: uv run ruff format --check . 2>&1 | tee build/ci-reports/ruff-format.txt
+
+      - name: Run Python Syntax Compilation Check
+        id: compile
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: uv run python -m compileall -q src tests
+
+      - name: Run Package Build
+        id: build
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: uv build
+
+      - name: Run Contributor Feature Tests
+        id: feature_tests
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: uv run pytest tests --ignore=tests/common -v --tb=short --junitxml=build/ci-reports/feature-junit.xml
+
+      - name: Run SPEC Universal Guardrail Tests
+        id: guardrail_tests
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: uv run pytest tests/common -v --tb=short --junitxml=build/ci-reports/guardrail-junit.xml
+
+      - name: Generate CI Test Report & Job Summary
+        id: report
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: |
+          uv run python .github/scripts/generate_ci_report.py \
+            --report-dir build/ci-reports \
+            --output build/ci-reports/ci-report.md \
+            --lint-outcome "${{ steps.lint.outcome }}" \
+            --format-outcome "${{ steps.format.outcome }}" \
+            --compile-outcome "${{ steps.compile.outcome }}" \
+            --build-outcome "${{ steps.build.outcome }}" \
+            --feature-outcome "${{ steps.feature_tests.outcome }}" \
+            --guardrail-outcome "${{ steps.guardrail_tests.outcome }}" \
+            --commit-sha "${{ github.sha }}" \
+            --ref-name "${{ github.ref_name }}" \
+            --run-url "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          cat build/ci-reports/ci-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload Test Report Artifact
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        uses: actions/upload-artifact@v6
+        with:
+          name: ci-test-report-${{ github.run_number }}-${{ github.run_attempt }}
+          path: build/ci-reports/
+          retention-days: 30
+
+      - name: Post or Update PR Test Report Comment
+        if: ${{ !cancelled() && steps.install.outcome == 'success' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
+        continue-on-error: true
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require("fs");
+            const marker = "<!-- ci-test-report -->";
+            let body = fs.readFileSync("build/ci-reports/ci-report.md", "utf8");
+            if (body.length > 64000) {
+              body = body.slice(0, 64000) + "\n\n...(報告過長已截斷，完整內容請下載 Actions Artifact)";
+            }
+            const { owner, repo } = context.repo;
+            const issue_number = context.issue.number;
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner,
+              repo,
+              issue_number,
+              per_page: 100,
+            });
+            const existing = comments.find((c) => c.body && c.body.includes(marker));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number,
+                body,
+              });
+            }
