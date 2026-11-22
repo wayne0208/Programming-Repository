@@ -1,4 +1,6 @@
 import copy
+
+
 def data():
     #前[0-6]是星期1-7 後[0-11]是節數1-9 a-c
     #curriculum = [["" for _ in range(12)] for _ in range(7)]

@@ -15,7 +15,7 @@ def add_course(course):#新增新的課程
     t = int(input("一周幾節課:"))
     new_course.append([input(f"時段{j+1}:") for j in range(t)])#時段
 
-    check_new_course(new_course,course)#檢查是否衝堂
+    check_new_course(new_course, course)#檢查是否衝堂
 
 def add_student(students): #新增學生
     new_student = []
@@ -51,9 +51,9 @@ def add_student(students): #新增學生
 
     new_student.append(new_student_course)
     '''
-    check_new_student_id(new_student[0], new_student,students) #檢查學號是否重複
+    check_new_student_id(new_student[0], new_student, students) #檢查學號是否重複
 
-def check_new_course(new_course,course):#檢查是否衝堂
+def check_new_course(new_course, course):#檢查是否衝堂
     s = 0#s = 0的話表示沒有錯誤
     for i in range(len(course)):#取預設課程總共數量
         if new_course[0] == course[i][0]:#檢查課程代碼是否重複
@@ -116,7 +116,7 @@ def delete_course(course):#刪除課程
     if j == 0:
         print("錯誤,提示:課程代碼不存在")
 
-def search_student_date(students,course):#查詢學生資料
+def search_student_date(students, course):#查詢學生資料
     id = int(input("請輸入學生學號: "))
     ii = 0#如果沒該學生測試
     for i in range(len(students)):
@@ -124,7 +124,7 @@ def search_student_date(students,course):#查詢學生資料
             ii = 1
             print(f"學生學號:{students[i][0]}\n學生名字:{students[i][1]}\n科系:{students[i][2]}\n學分上限:{students[i][3]}")
             a = students[i][4]#取名字
-            user_a =a
+            user_a = a
             print("----個人課表----")
             print(f"{'節數':<5}{'一':<13}{'二':<13}{'三':<13}{'四':<13}{'五':<13}{'六':<13}{'日':<13}")
             for i in range(12):
@@ -151,7 +151,7 @@ def search_student_date(students,course):#查詢學生資料
     if ii == 0:
         print("沒這名學生")
 
-def id_course(code,course):
+def id_course(code, course):
     for i in range(len(course)):
         if code == course[i][0]:
             pcode = course[i][1]
