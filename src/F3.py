@@ -2,23 +2,24 @@ import model
 
 
 # 查詢學生資料
-def find_student(student_id):
-    for student in model.students:
+def find_student(student_id,students):
+    for student in students:
         if student_id == student[0]:
             return student
     return None
 # 取得學生的課表
 def get_curriculum(student):
-    curriculum_name = student[4]
-    return getattr(model, curriculum_name)
+    return student[4]
+    '''curriculum_name = student[4]
+    return getattr(model, curriculum_name)'''
 # 將課程代碼轉換成課程名稱
-def get_course_name(code):
-    for course in model.course:
-        if code == course[0]:
-            return course[1]
+def get_course_name(code,course,activitys):
+    for course_item in course:
+        if code == course_item[0]:
+            return course_item[1]
 
     # 如果不是課程，檢查是不是活動
-    for activity in model.activitys:
+    for activity in activitys:
         if code == activity[0]:
             return activity[1]
     return code
@@ -33,7 +34,7 @@ def get_period_name(index):
     else:
         return "c"
 # 顯示個人課表
-def show_timetable(student):
+def show_timetable(student,course,activitys):
     curriculum = get_curriculum(student)
     print("\n========== 個人資料 ==========")
     print("學號：", student[0])
@@ -48,7 +49,7 @@ def show_timetable(student):
         for j in range(7):
             code = curriculum[j][i]
             if code != "":
-                name = get_course_name(code)
+                name = get_course_name(code,course,activitys)
             else:
                 name = "—"
             row = row + "\t" + name
@@ -96,11 +97,12 @@ def query_free_time(student):
         )
 # F3 主選單
 def main():
+    course,students,activitys,_=model.data()#_==classroom
     student_id = input("請輸入學生學號：")
     if not student_id.isdigit():
         print("學號格式錯誤")
         return
-    student = find_student(int(student_id))
+    student = find_student(int(student_id),students)
     if student is None:
         print("找不到這名學生")
         return
@@ -111,7 +113,7 @@ def main():
         print("0. 離開")
         choice = input("請選擇功能：")
         if choice == "1":
-            show_timetable(student)
+            show_timetable(student,course,activitys)
         elif choice == "2":
             query_free_time(student)
         elif choice == "0":

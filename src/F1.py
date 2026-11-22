@@ -1,7 +1,8 @@
 import model
 
+#course, students, activitys, classroom=model.data()
 
-def add_course():#新增新的課程
+def add_course(course):#新增新的課程
     new_course = []
     new_course.append(input("課程代碼:"))
     new_course.append(input("課程名稱:"))
@@ -14,9 +15,9 @@ def add_course():#新增新的課程
     t = int(input("一周幾節課:"))
     new_course.append([input(f"時段{j+1}:") for j in range(t)])#時段
 
-    check_new_course(new_course,t)#檢查是否衝堂
+    check_new_course(new_course,course)#檢查是否衝堂
 
-def add_student(): #新增學生
+def add_student(students): #新增學生
     new_student = []
     #new_student_course = [[0] * 12 for _ in range(7)] #學生已選課程
     new_student.append(int(input("學號:")))
@@ -50,12 +51,12 @@ def add_student(): #新增學生
 
     new_student.append(new_student_course)
     '''
-    check_new_student_id(new_student[0], new_student) #檢查學號是否重複
+    check_new_student_id(new_student[0], new_student,students) #檢查學號是否重複
 
-def check_new_course(new_course,t):#檢查是否衝堂
+def check_new_course(new_course,course):#檢查是否衝堂
     s = 0#s = 0的話表示沒有錯誤
-    for i in range(len(model.course)):#取預設課程總共數量
-        if new_course[0] == model.course[i][0]:#檢查課程代碼是否重複
+    for i in range(len(course)):#取預設課程總共數量
+        if new_course[0] == course[i][0]:#檢查課程代碼是否重複
             print("報錯拒絕,提示:課程代碼重複")
             s = 1
             break
@@ -85,26 +86,26 @@ def check_new_course(new_course,t):#檢查是否衝堂
                 break
     if s == 0:
         print("回報成功")
-        model.course.append(new_course)#新增課程
+        course.append(new_course)#新增課程
 
-def check_new_student_id(student_id, new_student): #檢查學號是否重複
+def check_new_student_id(student_id, new_student, students): #檢查學號是否重複
     student_id_repeat = False
-    for i in range(len(model.students)):
-        if student_id == model.students[i][0]:
+    for i in range(len(students)):
+        if student_id == students[i][0]:
             student_id_repeat = True
             break
     if student_id_repeat:
         print('報錯拒絕,提示:學號重複')
     else:
-        model.students.append(new_student) #新增學生
+        students.append(new_student) #新增學生
 
-def delete_course():#刪除課程
+def delete_course(course):#刪除課程
     code = input("請輸入要刪除的課程代碼:")
     j = 0#如果輸入錯誤代號執行
-    for i in range(len(model.course)):#取預設課程總共數量
-        if code == model.course[i][0]:#檢查課程代碼是否存在
-            if model.course[i][6] == 0:#檢查目前人數是否為0
-                model.course.pop(i)#刪除課程
+    for i in range(len(course)):#取預設課程總共數量
+        if code == course[i][0]:#檢查課程代碼是否存在
+            if course[i][6] == 0:#檢查目前人數是否為0
+                course.pop(i)#刪除課程
                 print("回報成功")
                 j = 1
                 break
@@ -115,14 +116,14 @@ def delete_course():#刪除課程
     if j == 0:
         print("錯誤,提示:課程代碼不存在")
 
-def search_student_date():#查詢學生資料
+def search_student_date(students,course):#查詢學生資料
     id = int(input("請輸入學生學號: "))
     ii = 0#如果沒該學生測試
-    for i in range(len(model.students)):
-        if id == model.students[i][0]:
+    for i in range(len(students)):
+        if id == students[i][0]:
             ii = 1
-            print(f"學生學號:{model.students[i][0]}\n學生名字:{model.students[i][1]}\n科系:{model.students[i][2]}\n學分上限:{model.students[i][3]}")
-            a = model.students[i][4]#取名字
+            print(f"學生學號:{students[i][0]}\n學生名字:{students[i][1]}\n科系:{students[i][2]}\n學分上限:{students[i][3]}")
+            a = students[i][4]#取名字
             user_a =a
             print("----個人課表----")
             print(f"{'節數':<5}{'一':<13}{'二':<13}{'三':<13}{'四':<13}{'五':<13}{'六':<13}{'日':<13}")
@@ -139,7 +140,7 @@ def search_student_date():#查詢學生資料
                 for j in range(7):
                     code = user_a[j][i]
                     if code != "":
-                        pcode = id_course(code)
+                        pcode = id_course(code,course)
                     else:
                         pcode = ""
                     chinese_char = sum(1 for char in pcode if '\u4e00' <= char <= '\u9fff')
@@ -150,11 +151,12 @@ def search_student_date():#查詢學生資料
     if ii == 0:
         print("沒這名學生")
 
-def id_course(code):
-    for i in range(len(model.course)):
-        if code == model.course[i][0]:
-            pcode = model.course[i][1]
+def id_course(code,course):
+    for i in range(len(course)):
+        if code == course[i][0]:
+            pcode = course[i][1]
     return pcode
+
 #add_course()#測試
 #delete_course()
 #search_student_date()
