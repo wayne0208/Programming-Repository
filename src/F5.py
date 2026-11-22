@@ -1,6 +1,6 @@
 import model
-def f5():
-    course,_,_,_=model.data()#_==students,activitys,classroom
+def f5(course):
+    
     must_class0=input("必修清單(課堂代號之間用空白隔開):")
     must_class=must_class0.split()
     hope_class0=input("希望修習的課程(課堂代號之間用空白隔開):")
@@ -49,15 +49,7 @@ def f5():
         final_must = [c for c in must_class if c in OK_must]
 
         OK_hope=set(OKcap_hope_class)&set(OKtime_hope_class)&set(OKpre_hope_class)
-        # 把衝堂的希望課移除
-        conflicts = error_capacity(final_must, list(OK_hope), course)
-        if conflicts:
-            cant.extend(conflicts)
-            for m_idx in index_class(final_must, course):
-                for h_code in list(OK_hope):
-                    h_idx = index_class([h_code], course)
-                    if set(course[m_idx]) & set(course[h_idx]):
-                        OK_hope.discard(h_code)
+       
         final_hope = [c for c in hope_class if c in OK_hope]
 
 #只填必修
@@ -80,7 +72,7 @@ def f5():
                   error.append(f"必修課程{i}不在偏好星期")
         OK_must=set(OKcap_must_class)&set(OKtime_must_class)&set(OKpre_must_class)
         final_must = [c for c in must_class if c in OK_must]
-        other_courses = [c for c in course if c not in must_class]
+        other_courses = [c[0] for c in course if c[0] not in must_class]
 
         index_other=index_class(other_courses,course)
         ok_cap_other,_=check_OK_capacity(index_other,course)
@@ -109,7 +101,7 @@ def f5():
         final_hope = [c for c in hope_class if c in OK_hope]
 #都沒填
     else:
-        class_=[i for i in course]
+        class_=[i[0] for i in course]
         index_class_=index_class(class_,course)
         ok_cap_class_,_=check_OK_capacity(index_class_,course)
         ok_time_class_=check_not_time(not_time,index_class_,course)
@@ -123,10 +115,55 @@ def f5():
                for j in range(i+1,len(index_)):
                     k= set(course[index_[i]][8]) & set(course[index_[j]][8])
                     if k:
-                        s=f"必修課程{course[i][0]}與{course[j][0]}衝堂 {k}"
+                        s=f"必修課程{course[index_[i]][0]}與{course[index_[j]][0]}衝堂 {k}"
                         error.append(s)
 #學分計算
-                         
+    ffin_class=list(final_must)
+    total_credits=0
+    total_credits=sum([course[i][2] for i in index_class(final_must,course)])
+    #計算時段(合集)
+    fin_slots=set()
+    for i in index_class(final_must,course):
+        fin_slots=set(course[i][8])|fin_slots
+    if total_credits>max_credits:
+        error.append(f"必修課程學分{total_credits}超過最高學分{max_credits}")
+    else:
+         for i in final_hope:
+              ind=index_class([i],course)
+              cre=course[ind[0]][2]
+              slo=set(course[ind[0]][8])
+              #檢查衝堂
+              if fin_slots & slo:
+                   if hope_class:
+                        cant.append(f"希望修習的課程{i}與必修課程衝堂")
+                   continue
+              if total_credits+cre<=max_credits:
+                   total_credits+=cre
+                   fin_slots=fin_slots|slo
+                   ffin_class.append(i)
+              else:
+                   if hope_class:
+                         cant.append(f"希望修習的課程{i}學分超過最高學分{max_credits}")
+    if total_credits<min_credits :
+         error.append(f"總學分{total_credits}低於最低學分{min_credits}")
+
+    #輸出結果
+    print("\n========== 可行性檢查結果 ==========")
+    if cant:
+         print("提醒：")
+         for c in cant:
+             print("- " + c)
+    if error:
+        print("可行性失敗，原因如下：")
+        for e in error:
+            print("- " + e)
+    else:
+        print("可行性成功，選課結果如下：")
+        print(f"總學分：{total_credits}")
+        for idx in index_class(ffin_class, course):
+            c = course[idx]
+            print(f"   - {c[0]} | {c[1]} | {c[2]}學分 | {c[3]} | 教師:{c[4]} | 時段:{','.join(c[8])}")
+            print("======================================================")
 
 def check_preference(_index,preference_time,course):#偏好星期
      time_=[]
@@ -184,4 +221,8 @@ def error_capacity(class1,class2,course):#必修清單衝堂
                  if s not in over:
                     over.append(s)
     return over
-f5()
+def main():
+     course,_,_,_=model.data()#_==students,activitys,classroom
+     f5(course)
+if __name__ == "__main__":
+    main()
