@@ -2,18 +2,12 @@ import model
 
 
 def f5(course):
-    must_class0 = input("必修清單(課堂代號之間用空白隔開):")
-    must_class = must_class0.split()
-    hope_class0 = input("希望修習的課程(課堂代號之間用空白隔開):")
-    hope_class = hope_class0.split()
-    min_credits = input("最低學分:")
-    min_credits = int(min_credits) if min_credits else 0
-    max_credits = input("最高學分:")
-    max_credits = int(max_credits) if max_credits else 100
-    not_time = input("不可上課的時段(EX1-1)(之間用空白隔開):")
-    not_time = not_time.split()
-    preference_time = input("偏好上課的星期(數字之間用空白隔開):")
-    preference_time = preference_time.split()
+    must_class = input("必修清單(課堂代號之間用空白隔開):").split()
+    hope_class = input("希望修習的課程(課堂代號之間用空白隔開):").split()
+    min_credits = int(input("最低學分:"))
+    max_credits = int(input("最高學分:"))
+    not_time = input("不可上課的時段(EX1-1)(之間用空白隔開):").split()
+    preference_time = input("偏好上課的星期(數字之間用空白隔開):").split()
     error = []  # 存放導致「可行性失敗」
     cant = []  # 存放「提醒」
 
