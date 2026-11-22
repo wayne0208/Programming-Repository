@@ -179,7 +179,7 @@ def print_result(result):
     print("學分上限:" + str(result["limit"]))
 
 def student_add_new_course():
-    courses,students,activities,_=model.data()#_==classroom
+    courses, students, activities, _ = model.data()#_ == classroom
     # 課程資料
      # 學生資料
     # 活動資料
