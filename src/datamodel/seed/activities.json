@@ -1,0 +1,149 @@
+[
+  {
+    "activity_id": "A01",
+    "name": "火舞社表演",
+    "date": "2026-10-13",
+    "start_time": "14:10",
+    "end_time": "15:00",
+    "category": "表演",
+    "capacity": 10,
+    "registered": 30,
+    "required_equipment": [
+      "音響"
+    ],
+    "room": "02303"
+  },
+  {
+    "activity_id": "A02",
+    "name": "自主學Python",
+    "date": "2026-10-22",
+    "start_time": "11:10",
+    "end_time": "12:00",
+    "category": "讀書會",
+    "capacity": 15,
+    "registered": 40,
+    "required_equipment": [
+      "投影機",
+      "電腦"
+    ],
+    "room": "06206"
+  },
+  {
+    "activity_id": "A03",
+    "name": "技藝競賽培養",
+    "date": "2026-11-02",
+    "start_time": "12:10",
+    "end_time": "13:00",
+    "category": "競賽",
+    "capacity": 10,
+    "registered": 30,
+    "required_equipment": [
+      "投影機",
+      "電腦"
+    ],
+    "room": "03303"
+  },
+  {
+    "activity_id": "A04",
+    "name": "慈濟社活動",
+    "date": "2026-11-14",
+    "start_time": "13:10",
+    "end_time": "15:00",
+    "category": "社團",
+    "capacity": 20,
+    "registered": 40,
+    "required_equipment": [
+      "投影機",
+      "麥克風"
+    ],
+    "room": "06206"
+  },
+  {
+    "activity_id": "A05",
+    "name": "弓道社社課",
+    "date": "2026-11-22",
+    "start_time": "10:10",
+    "end_time": "12:00",
+    "category": "社團",
+    "capacity": 20,
+    "registered": 40,
+    "required_equipment": [
+      "白板"
+    ],
+    "room": "06206"
+  },
+  {
+    "activity_id": "A06",
+    "name": "口技社",
+    "date": "2026-10-19",
+    "start_time": "16:10",
+    "end_time": "18:00",
+    "category": "社團",
+    "capacity": 15,
+    "registered": 45,
+    "required_equipment": [
+      "麥克風",
+      "音響"
+    ],
+    "room": "06206"
+  },
+  {
+    "activity_id": "A07",
+    "name": "熱舞表演",
+    "date": "2026-10-23",
+    "start_time": "16:10",
+    "end_time": "17:00",
+    "category": "表演",
+    "capacity": 30,
+    "registered": 50,
+    "required_equipment": [
+      "音響",
+      "麥克風"
+    ],
+    "room": "00101"
+  },
+  {
+    "activity_id": "A08",
+    "name": "排球冠亞軍賽",
+    "date": "2026-10-17",
+    "start_time": "10:10",
+    "end_time": "12:00",
+    "category": "競賽",
+    "capacity": 24,
+    "registered": 50,
+    "required_equipment": [
+      "體育器材",
+      "音響"
+    ],
+    "room": "00101"
+  },
+  {
+    "activity_id": "A09",
+    "name": "網球競賽",
+    "date": "2026-10-09",
+    "start_time": "17:10",
+    "end_time": "19:00",
+    "category": "競賽",
+    "capacity": 20,
+    "registered": 50,
+    "required_equipment": [
+      "體育器材"
+    ],
+    "room": "00101"
+  },
+  {
+    "activity_id": "A10",
+    "name": "直笛表演",
+    "date": "2026-10-21",
+    "start_time": "10:10",
+    "end_time": "11:00",
+    "category": "表演",
+    "capacity": 15,
+    "registered": 40,
+    "required_equipment": [
+      "音響",
+      "麥克風"
+    ],
+    "room": "06302"
+  }
+]
