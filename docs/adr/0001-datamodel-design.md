@@ -1,5 +1,9 @@
 # Datamodel 基礎資料型別與儲存介面規格
 
+> **狀態**：已實作（對應 commit `f5092c9`）  
+> **現行使用文件**：[src/datamodel/README.md](../../src/datamodel/README.md)  
+> **實作補充**：原設計提及套件內部使用相對匯入（`from .xxx import ...`），實作時為符合 `tests/common/test_spec_guardrails.py` 單檔匯入檢查而改採絕對匯入（`from datamodel.xxx import ...`），並於內部抽出共用驗證模組 `_validation.py`。
+
 ## Problem Statement
 
 現有系統將課程、學生、活動與教室資料以無欄位名稱的巢狀 `list` 存放於頂層全域變數中，並由各功能模組直接存取跨模組全域狀態與固定位置索引（magic index）。此設計同時引發多項問題：
