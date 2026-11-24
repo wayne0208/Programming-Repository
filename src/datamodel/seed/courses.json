@@ -1,0 +1,291 @@
+[
+  {
+    "code": "CS001",
+    "name": "程式設計",
+    "credits": 3,
+    "category": "必修",
+    "teacher": "郭大爺",
+    "capacity": 45,
+    "enrolled": 40,
+    "room": "06206",
+    "slots": [
+      "2-8",
+      "2-9",
+      "2-a"
+    ]
+  },
+  {
+    "code": "CS002",
+    "name": "日文",
+    "credits": 2,
+    "category": "選修",
+    "teacher": "鄭要學",
+    "capacity": 30,
+    "enrolled": 0,
+    "room": "03303",
+    "slots": [
+      "2-7",
+      "2-8"
+    ]
+  },
+  {
+    "code": "CS003",
+    "name": "國文",
+    "credits": 2,
+    "category": "必修",
+    "teacher": "陳詩雅",
+    "capacity": 40,
+    "enrolled": 30,
+    "room": "06306",
+    "slots": [
+      "4-3",
+      "4-4"
+    ]
+  },
+  {
+    "code": "CS004",
+    "name": "英文",
+    "credits": 2,
+    "category": "必修",
+    "teacher": "李古德",
+    "capacity": 40,
+    "enrolled": 30,
+    "room": "02303",
+    "slots": [
+      "1-5",
+      "1-6"
+    ]
+  },
+  {
+    "code": "CS005",
+    "name": "微積分",
+    "credits": 3,
+    "category": "必修",
+    "teacher": "林倍",
+    "capacity": 40,
+    "enrolled": 30,
+    "room": "06302",
+    "slots": [
+      "3-2",
+      "3-3",
+      "3-4"
+    ]
+  },
+  {
+    "code": "CS006",
+    "name": "線性代數",
+    "credits": 3,
+    "category": "必修",
+    "teacher": "何偉",
+    "capacity": 45,
+    "enrolled": 44,
+    "room": "06206",
+    "slots": [
+      "2-3",
+      "5-1",
+      "5-2"
+    ]
+  },
+  {
+    "code": "CS007",
+    "name": "計算機概論",
+    "credits": 3,
+    "category": "必修",
+    "teacher": "江心蔡",
+    "capacity": 40,
+    "enrolled": 30,
+    "room": "06302",
+    "slots": [
+      "1-7",
+      "2-1",
+      "2-2"
+    ]
+  },
+  {
+    "code": "CS008",
+    "name": "數位邏輯設計",
+    "credits": 3,
+    "category": "必修",
+    "teacher": "林凱",
+    "capacity": 40,
+    "enrolled": 35,
+    "room": "06302",
+    "slots": [
+      "1-3",
+      "1-4",
+      "5-3"
+    ]
+  },
+  {
+    "code": "CS009",
+    "name": "資料結構",
+    "credits": 3,
+    "category": "選修",
+    "teacher": "吳廣",
+    "capacity": 40,
+    "enrolled": 30,
+    "room": "02303",
+    "slots": [
+      "1-8",
+      "1-9",
+      "5-4"
+    ]
+  },
+  {
+    "code": "CS010",
+    "name": "工程數學",
+    "credits": 3,
+    "category": "選修",
+    "teacher": "王傑",
+    "capacity": 45,
+    "enrolled": 35,
+    "room": "06206",
+    "slots": [
+      "3-6",
+      "3-7",
+      "5-5"
+    ]
+  },
+  {
+    "code": "CS011",
+    "name": "物理實驗",
+    "credits": 3,
+    "category": "選修",
+    "teacher": "金潛",
+    "capacity": 30,
+    "enrolled": 30,
+    "room": "03303",
+    "slots": [
+      "3-8",
+      "3-9",
+      "3-a"
+    ]
+  },
+  {
+    "code": "CS012",
+    "name": "職場倫理",
+    "credits": 2,
+    "category": "選修",
+    "teacher": "詹姆士",
+    "capacity": 40,
+    "enrolled": 30,
+    "room": "06302",
+    "slots": [
+      "5-3",
+      "5-4"
+    ]
+  },
+  {
+    "code": "CS013",
+    "name": "體育(1)",
+    "credits": 2,
+    "category": "必修",
+    "teacher": "李多會",
+    "capacity": 50,
+    "enrolled": 25,
+    "room": "00101",
+    "slots": [
+      "5-b",
+      "5-c"
+    ]
+  },
+  {
+    "code": "CS014",
+    "name": "體育(2)",
+    "credits": 2,
+    "category": "必修",
+    "teacher": "安境",
+    "capacity": 50,
+    "enrolled": 50,
+    "room": "00101",
+    "slots": [
+      "4-7",
+      "4-8"
+    ]
+  },
+  {
+    "code": "CS015",
+    "name": "基本設計",
+    "credits": 3,
+    "category": "選修",
+    "teacher": "洪水",
+    "capacity": 45,
+    "enrolled": 35,
+    "room": "06206",
+    "slots": [
+      "2-4",
+      "2-5",
+      "4-5"
+    ]
+  },
+  {
+    "code": "CS016",
+    "name": "資訊與生活",
+    "credits": 2,
+    "category": "選修",
+    "teacher": "菜究戀",
+    "capacity": 40,
+    "enrolled": 30,
+    "room": "02303",
+    "slots": [
+      "1-2",
+      "1-3"
+    ]
+  },
+  {
+    "code": "CS017",
+    "name": "心理與人生",
+    "credits": 2,
+    "category": "選修",
+    "teacher": "李雲",
+    "capacity": 30,
+    "enrolled": 20,
+    "room": "03303",
+    "slots": [
+      "3-5",
+      "3-6"
+    ]
+  },
+  {
+    "code": "CS018",
+    "name": "創新與創業",
+    "credits": 2,
+    "category": "選修",
+    "teacher": "吳狄",
+    "capacity": 40,
+    "enrolled": 25,
+    "room": "06302",
+    "slots": [
+      "5-6",
+      "5-7"
+    ]
+  },
+  {
+    "code": "CS019",
+    "name": "藝術概論",
+    "credits": 2,
+    "category": "選修",
+    "teacher": "章逾稍",
+    "capacity": 40,
+    "enrolled": 20,
+    "room": "02303",
+    "slots": [
+      "4-6",
+      "4-7"
+    ]
+  },
+  {
+    "code": "CS020",
+    "name": "親密關係",
+    "credits": 2,
+    "category": "選修",
+    "teacher": "楊妹咩",
+    "capacity": 30,
+    "enrolled": 25,
+    "room": "03303",
+    "slots": [
+      "4-a",
+      "4-b"
+    ]
+  }
+]

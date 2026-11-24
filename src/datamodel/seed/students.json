@@ -1,0 +1,255 @@
+[
+  {
+    "student_id": "1150101",
+    "name": "王曉明",
+    "department": "資工一",
+    "credit_limit": 25,
+    "enrolled_courses": [
+      "CS008",
+      "CS004",
+      "CS007",
+      "CS006",
+      "CS001",
+      "CS005",
+      "CS003",
+      "CS013"
+    ],
+    "enrolled_activities": []
+  },
+  {
+    "student_id": "1150102",
+    "name": "赤羽葉",
+    "department": "資工一",
+    "credit_limit": 25,
+    "enrolled_courses": [
+      "CS008",
+      "CS004",
+      "CS007",
+      "CS006",
+      "CS001",
+      "CS005",
+      "CS003",
+      "CS013"
+    ],
+    "enrolled_activities": []
+  },
+  {
+    "student_id": "1150103",
+    "name": "沈佳宜",
+    "department": "資工一",
+    "credit_limit": 25,
+    "enrolled_courses": [
+      "CS008",
+      "CS004",
+      "CS007",
+      "CS006",
+      "CS001",
+      "CS005",
+      "CS003",
+      "CS014",
+      "CS018"
+    ],
+    "enrolled_activities": []
+  },
+  {
+    "student_id": "1150104",
+    "name": "毛利藍",
+    "department": "資工一",
+    "credit_limit": 25,
+    "enrolled_courses": [
+      "CS008",
+      "CS004",
+      "CS007",
+      "CS006",
+      "CS001",
+      "CS005",
+      "CS017",
+      "CS003",
+      "CS019",
+      "CS013"
+    ],
+    "enrolled_activities": []
+  },
+  {
+    "student_id": "1150105",
+    "name": "森德綸",
+    "department": "資工一",
+    "credit_limit": 25,
+    "enrolled_courses": [
+      "CS004",
+      "CS007",
+      "CS009",
+      "CS006",
+      "CS001",
+      "CS005",
+      "CS010",
+      "CS003",
+      "CS013"
+    ],
+    "enrolled_activities": []
+  },
+  {
+    "student_id": "1150106",
+    "name": "伏黑惠",
+    "department": "資工一",
+    "credit_limit": 25,
+    "enrolled_courses": [
+      "CS004",
+      "CS007",
+      "CS009",
+      "CS006",
+      "CS001",
+      "CS005",
+      "CS003",
+      "CS013"
+    ],
+    "enrolled_activities": []
+  },
+  {
+    "student_id": "1150107",
+    "name": "洪菁晴",
+    "department": "資工一",
+    "credit_limit": 25,
+    "enrolled_courses": [
+      "CS007",
+      "CS019"
+    ],
+    "enrolled_activities": []
+  },
+  {
+    "student_id": "1150108",
+    "name": "月島螢",
+    "department": "資工一",
+    "credit_limit": 25,
+    "enrolled_courses": [
+      "CS008",
+      "CS004",
+      "CS007",
+      "CS006",
+      "CS001",
+      "CS005",
+      "CS003",
+      "CS013"
+    ],
+    "enrolled_activities": [
+      "A06"
+    ]
+  },
+  {
+    "student_id": "1150109",
+    "name": "柯景騰",
+    "department": "資工一",
+    "credit_limit": 25,
+    "enrolled_courses": [
+      "CS008",
+      "CS004",
+      "CS007",
+      "CS006",
+      "CS001",
+      "CS005",
+      "CS003",
+      "CS013"
+    ],
+    "enrolled_activities": []
+  },
+  {
+    "student_id": "1150110",
+    "name": "徐太宇",
+    "department": "資工一",
+    "credit_limit": 25,
+    "enrolled_courses": [
+      "CS008",
+      "CS004",
+      "CS007",
+      "CS006",
+      "CS001",
+      "CS005",
+      "CS003",
+      "CS013"
+    ],
+    "enrolled_activities": []
+  },
+  {
+    "student_id": "1140120",
+    "name": "夜神月",
+    "department": "資工二",
+    "credit_limit": 25,
+    "enrolled_courses": [
+      "CS008",
+      "CS004",
+      "CS007",
+      "CS006",
+      "CS001",
+      "CS005",
+      "CS003",
+      "CS014",
+      "CS018"
+    ],
+    "enrolled_activities": []
+  },
+  {
+    "student_id": "1140131",
+    "name": "林真心",
+    "department": "資工二",
+    "credit_limit": 25,
+    "enrolled_courses": [
+      "CS008",
+      "CS004",
+      "CS007",
+      "CS006",
+      "CS001",
+      "CS005",
+      "CS017",
+      "CS003",
+      "CS019",
+      "CS013"
+    ],
+    "enrolled_activities": []
+  },
+  {
+    "student_id": "1140146",
+    "name": "五條悟",
+    "department": "資工二",
+    "credit_limit": 25,
+    "enrolled_courses": [
+      "CS004",
+      "CS007",
+      "CS009",
+      "CS006",
+      "CS001",
+      "CS005",
+      "CS010",
+      "CS003",
+      "CS013"
+    ],
+    "enrolled_activities": []
+  },
+  {
+    "student_id": "1130116",
+    "name": "八千代",
+    "department": "資工三",
+    "credit_limit": 25,
+    "enrolled_courses": [
+      "CS004",
+      "CS007",
+      "CS009",
+      "CS006",
+      "CS001",
+      "CS005",
+      "CS003",
+      "CS013"
+    ],
+    "enrolled_activities": []
+  },
+  {
+    "student_id": "1130124",
+    "name": "芙莉蓮",
+    "department": "資工三",
+    "credit_limit": 25,
+    "enrolled_courses": [
+      "CS007",
+      "CS019"
+    ],
+    "enrolled_activities": []
+  }
+]
