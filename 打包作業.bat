@@ -68,7 +68,7 @@ try {
     Write-Host ''
 
     # 3. 輸入學號並檢查個人作業
-    $studentId = Read-InputLine '請輸入學號 (例如 112AB0050)'
+    $studentId = Read-InputLine '請輸入學號 (例如 114590050)'
     if ([string]::IsNullOrWhiteSpace($studentId)) {
         Write-Host '錯誤：學號不可為空。' -ForegroundColor Red
         exit 1
@@ -89,7 +89,7 @@ try {
     Write-Host ''
 
     # 4. 輸入姓名
-    $studentName = Read-InputLine '請輸入姓名 (例如 王界誠)'
+    $studentName = Read-InputLine '請輸入姓名 (例如 王小明)'
     if ([string]::IsNullOrWhiteSpace($studentName)) {
         Write-Host '錯誤：姓名不可為空。' -ForegroundColor Red
         exit 1
